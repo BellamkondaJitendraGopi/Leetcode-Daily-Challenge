@@ -1,0 +1,37 @@
+/*
+
+Author : B.Jitendra Gopi
+Date : 27/01/2024
+Problem : 629. K Inverse Pairs Array
+Difficulty : Hard
+Problem Link : https://leetcode.com/problems/k-inverse-pairs-array/description/?envType=daily-question&envId=2024-01-27
+
+
+*/
+public class Solution {
+
+    public static int kInversePairs(int n, int k) {
+        int MOD = 1000000007;
+        int[][] dp = new int[n + 1][k + 1];
+
+        dp[0][0] = 1;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j <= k; j++) {
+                for (int p = 0; p <= Math.min(j, i - 1); p++) {
+                    dp[i][j] = (dp[i][j] + dp[i - 1][j - p]) % MOD;
+                }
+            }
+        }
+
+        return dp[n][k];
+    }
+
+    public static void main(String[] args) {
+        int n1 = 3, k1 = 0;
+        System.out.println(kInversePairs(n1, k1));
+
+        int n2 = 3, k2 = 1;
+        System.out.println(kInversePairs(n2, k2));
+    }
+}
