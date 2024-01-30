@@ -1,0 +1,41 @@
+/*
+
+Author : B.Jitendra Gopi
+Date : 30/01/2024
+Problem : 150. Evaluate Reverse Polish Notation
+Difficulty : Medium
+Problem Link : https://leetcode.com/problems/evaluate-reverse-polish-notation/description/
+
+*/
+import java.util.Stack;
+
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> stack = new Stack<>();
+        
+        for (String token : tokens) {
+            if (token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/")) {
+                int operand2 = stack.pop();
+                int operand1 = stack.pop();
+                switch (token) {
+                    case "+":
+                        stack.push(operand1 + operand2);
+                        break;
+                    case "-":
+                        stack.push(operand1 - operand2);
+                        break;
+                    case "*":
+                        stack.push(operand1 * operand2);
+                        break;
+                    case "/":
+                        stack.push(operand1 / operand2);
+                        break;
+                }
+            } else {
+                stack.push(Integer.parseInt(token));
+            }
+        }
+        
+        return stack.pop();
+    }
+}
