@@ -1,0 +1,18 @@
+/*
+
+Author : B.Jitendra Gopi
+Date : 28/01/2024
+Problem : 2864. Maximum Odd Binary Number
+Difficulty : Medium
+Problem Link : https://leetcode.com/problems/maximum-odd-binary-number/description/?envType=daily-question&envId=2024-03-01
+
+
+*/
+
+class Solution {
+    public String maximumOddBinaryNumber(String s) {
+        final int countZeros = (int) s.chars().filter(c -> c == '0').count();
+        final int countOnes = s.length() - countZeros;
+        return "1".repeat(countOnes - 1) + "0".repeat(countZeros) + "1";
+    }
+}
