@@ -1,0 +1,35 @@
+/*
+
+Author : B.Jitendra Gopi
+Date : 05/03/2024
+Problem : 1750. Minimum Length of String After Deleting Similar Ends
+Difficulty : Medium
+Problem Link : https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/description/?envType=daily-question&envId=2024-03-05
+
+
+*/
+
+class Solution {
+    public int minimumLength(String s) {
+        int left = 0;
+        int right = s.length() - 1;
+        
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                break;
+            }
+            
+            char currentChar = s.charAt(left);
+            
+            while (left <= right && s.charAt(left) == currentChar) {
+                left++;
+            }
+            
+            while (left <= right && s.charAt(right) == currentChar) {
+                right--;
+            }
+        }
+        
+        return right - left + 1;
+    }
+}
