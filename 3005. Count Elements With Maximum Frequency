@@ -1,0 +1,33 @@
+/*
+
+Author : B.Jitendra Gopi
+Date : 08/03/2024
+Problem : 3005. Count Elements With Maximum Frequency
+Difficulty : Easy
+Problem Link : https://leetcode.com/problems/count-elements-with-maximum-frequency/description/
+
+
+*/
+
+import java.util.*;
+
+class Solution {
+    public int maxFrequencyElements(int[] nums) {
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        
+        for (int num : nums) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+        
+        int maxFrequency = Collections.max(frequencyMap.values());
+        
+        int count = 0;
+        for (int frequency : frequencyMap.values()) {
+            if (frequency == maxFrequency) {
+                count++;
+            }
+        }
+        
+        return maxFrequency * count;
+    }
+}
