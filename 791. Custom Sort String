@@ -1,0 +1,41 @@
+/*
+
+Author : B.Jitendra Gopi
+Date : 11/03/2024
+Problem : 791. Custom Sort String
+Difficulty : Medium
+Problem Link : https://leetcode.com/problems/custom-sort-string/description/?envType=daily-question&envId=2024-03-11
+
+
+*/
+
+import java.util.*;
+
+class Solution {
+    public String customSortString(String order, String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < order.length(); i++) {
+            map.put(order.charAt(i), i);
+        }
+        
+        Comparator<Character> customComparator = new Comparator<Character>() {
+            @Override
+            public int compare(Character c1, Character c2) {
+                return map.getOrDefault(c1, Integer.MAX_VALUE) - map.getOrDefault(c2, Integer.MAX_VALUE);
+            }
+        };
+        
+        Character[] chars = new Character[s.length()];
+        for (int i = 0; i < s.length(); i++) {
+            chars[i] = s.charAt(i);
+        }
+        Arrays.sort(chars, customComparator);
+        
+        StringBuilder sb = new StringBuilder();
+        for (char c : chars) {
+            sb.append(c);
+        }
+        
+        return sb.toString();
+    }
+}
