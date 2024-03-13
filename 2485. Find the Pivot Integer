@@ -1,0 +1,26 @@
+/*
+
+Author : B.Jitendra Gopi
+Date : 13/03/2024
+Problem : 2485. Find the Pivot Integer
+Difficulty : Easy
+Problem Link : https://leetcode.com/problems/find-the-pivot-integer/description/?envType=daily-question&envId=2024-03-13
+
+
+*/
+
+class Solution {
+    public int pivotInteger(int n) {
+        int totalSum = (n * (n + 1)) / 2;  
+        int currentSum = 0;
+        
+        for (int x = 1; x <= n; x++) {
+            currentSum += x;
+            if (currentSum == totalSum - currentSum + x) {
+                return x;
+            }
+        }
+        
+        return -1;
+    }
+}
